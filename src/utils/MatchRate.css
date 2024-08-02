@@ -1,0 +1,21 @@
+.match-rate {
+    display: flex;
+    flex-direction: column;
+  justify-content: center;
+  align-items: center;
+    height: 100vh;
+    font-family: QuickSand, sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+
+    
+  }
+
+  svg {
+    transform: rotate(0deg);
+  }
+  
+  circle {
+    transition: stroke-dashoffset 2s ease;
+  }
+  

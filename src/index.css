@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #f1f1f1;
+  background-image: url("../src/images/bgimg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* Ensures the background image stays fixed when scrolling */
+  margin: 0;
+  padding: 0;
+}
+
+.MuiTableHead-root {
+  position: sticky !important;
+  top: 0 !important;
+  background-color: white;
+  z-index: 1 !important;
+}
+
+.MuiTypography-h6 {
+  font-weight: 600 !important;
+  color: #d5292b !important;
+}

@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.ql-snow.ql-toolbar button,
+.ql-snow .ql-toolbar button {
+  height: 20px !important;
+  width: 20px !important;
+}
+
+.custom-material-table .MuiTypography-root.MuiTypography-h6 {
+  display: none !important;
+}
+
+.custom-material-table
+  .MuiToolbar-root.MuiToolbar-regular.MTableToolbar-root-5.MuiToolbar-gutters {
+  display: none !important;
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(109, 108, 108, 0.3);
+  border-radius: 10px;
+  background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+  background-color: #f5f5f5;
+  -webkit-box-shadow: inset 0 0 6px rgba(109, 108, 108, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  width: 3.125rem;
+  background-color: #2c4b84;
+  border: 0.0625rem solid #2c4b84;
+  -webkit-border-radius: 0.375rem;
+}

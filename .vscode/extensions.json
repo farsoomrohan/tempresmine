@@ -1,0 +1,14 @@
+{
+    "recommendations": [
+      "dbaeumer.vscode-eslint",
+      "esbenp.prettier-vscode",
+      "bradlc.vscode-tailwindcss",
+      "jmsv.JavaScriptSnippetsStandard", 
+      "christian-kohler.path-intellisense",
+      "humao.rest-client",
+      "mf.vscode-styled-components",
+      "HTMLHint.vscode-htmlhint", // HTMLHint
+      "CoryGross.vscode-mdn-docs" // MDN Documentation
+    ]
+  }
+  
