@@ -1,14 +1,55 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import NavBar from "../components/NavBar";
 import img from "../images/home.png";
 import AuthModals from "../utils/AuthModals";
+import { PublicClientApplication } from "@azure/msal-browser";
+import { msalConfig } from "../authentication/msal-config";
+import { SsidChart } from "@mui/icons-material";
+import { jwtDecode } from "jwt-decode";
+import { showErrorToast, showSuccessToast } from "../utils/toastUtility";
+import { useNavigate } from "react-router-dom";
+import { useMsal } from "@azure/msal-react";
 
 function LandingPage() {
-  const [isOpen, setIsOpen] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
 
-  const toggleModal = () => {
-    setIsOpen(!isOpen);
-  };
+  // const toggleModal = () => {
+  //   setIsOpen(!isOpen);
+  // };
+
+  // useEffect(() => {
+  //   const msalInstance = new PublicClientApplication(msalConfig);
+  //   msalInstance.initialize();
+  //   setMsalInstance(msalInstance);
+  // }, []);
+
+  const navigate = useNavigate();
+  const { instance } = useMsal();
+
+  const handleLogin = async () => {
+    if (!instance) {
+      return;
+    }
+    
+    console.log(instance);
+
+    try {
+      const loginResponse = await instance.loginPopup({
+        scopes: ["User.Read"],
+        prompt: "select_account",
+      });
+
+      const accessToken = loginResponse.accessToken;
+      localStorage.setItem("token", accessToken);
+      localStorage.setItem("decodedToken", JSON.stringify(jwtDecode(accessToken)));
+
+      showSuccessToast("Successful Login!");
+      navigate("/home");
+    } catch (e) {
+      console.error("Login error:", e);
+      showErrorToast("Login failed.");
+    }
+  }
 
   return (
     <>
@@ -23,7 +64,7 @@ function LandingPage() {
             few seconds!
           </p>
           <button
-            onClick={toggleModal}
+            onClick={() => {handleLogin()}}
             className="px-7 py-3 text-lg font-medium text-center text-white bg-btnColor rounded-lg hover:bg-btnHover"
           >
             Login!
@@ -49,7 +90,6 @@ function LandingPage() {
           />
         </div>
       </div>
-      {isOpen && <AuthModals isOpen={isOpen} setIsOpen={setIsOpen} />}
     </>
   );
 }

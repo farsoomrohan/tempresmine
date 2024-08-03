@@ -5,13 +5,20 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import AuthWrapper from './utils/AuthWrapper'
+import { PublicClientApplication } from '@azure/msal-browser';
+import { msalConfig } from './authentication/msal-config';
+import { MsalProvider } from '@azure/msal-react';
+
+const pca = new PublicClientApplication(msalConfig);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <AuthWrapper />
-      <App />
+      <MsalProvider instance={pca}>
+        <AuthWrapper/>
+        <App />
+      </MsalProvider>
     </BrowserRouter>
   </React.StrictMode>
 

@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@azure/msal-browser": "^3.19.1",
+    "@azure/msal-browser": "^3.20.0",
+    "@azure/msal-react": "^2.0.22",
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
     "@fortawesome/fontawesome-svg-core": "^6.5.2",

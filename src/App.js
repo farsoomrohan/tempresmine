@@ -15,6 +15,7 @@ import AdminDashboard from './admin/pages/AdminDashboard'
 import BenchDataLists from './admin/pages/BenchDataLists'
 import ProtectedRoute from './utils/ProtectedRoute'
 import UploadBenchData from './admin/pages/UploadBench'
+import { AuthenticatedTemplate, UnauthenticatedTemplate } from '@azure/msal-react'
 
 function App() {
     const [hasNetworkError, setHasNetworkError] = useState(false)
@@ -30,80 +31,100 @@ function App() {
     return (
         <ResumeContextProvider>
             <Routes>
-                <Route path="/" element={<LandingPage />} />
+                <Route path="/" element={
+                    <UnauthenticatedTemplate>
+                        <LandingPage />
+                    </UnauthenticatedTemplate>
+                } />
                 <Route
                     path="/home"
                     element={
-                        <HomePage handleNetworkError={handleNetworkError} />
+                        <AuthenticatedTemplate>
+                            <HomePage handleNetworkError={handleNetworkError} />
+                        </AuthenticatedTemplate>
                     }
                 />
                 <Route
                     path="/upload/resumes/:jdId"
                     element={
-                        <ScanViewJobDescription
-                            handleNetworkError={handleNetworkError}
-                        />
+                        <AuthenticatedTemplate>
+                            <ScanViewJobDescription
+                                handleNetworkError={handleNetworkError}
+                            />
+                        </AuthenticatedTemplate>
                     }
                 />
                 <Route
                     path="/matched/resumeslist/:jdId"
                     element={
-                        <JobDescriptionMatchList
-                            handleNetworkError={handleNetworkError}
-                        />
+                        <AuthenticatedTemplate>
+                            <JobDescriptionMatchList
+                                handleNetworkError={handleNetworkError}
+                            />
+                        </AuthenticatedTemplate>
                     }
                 />
                 <Route
                     path="/resumeSummary/:_id"
                     element={
-                        <ResumeSummaryPage
-                            handleNetworkError={handleNetworkError}
-                        />
+                        <AuthenticatedTemplate>
+                            <ResumeSummaryPage
+                                handleNetworkError={handleNetworkError}
+                            />
+                        </AuthenticatedTemplate>
                     }
                 />
                 <Route
                     path="/resumeAnalysisReport/:_id"
                     element={
-                        <ResumeAnalysisReport
-                            handleNetworkError={handleNetworkError}
-                        />
+                        <AuthenticatedTemplate>
+                            <ResumeAnalysisReport
+                                handleNetworkError={handleNetworkError}
+                            />
+                        </AuthenticatedTemplate>
                     }
                 />
                 <Route
                     path="/admin"
                     element={
-                        <ProtectedRoute
-                            element={
-                                <AdminDashboard
-                                    handleNetworkError={handleNetworkError}
-                                />
-                            }
-                        />
+                        <AuthenticatedTemplate>
+                            <ProtectedRoute
+                                element={
+                                    <AdminDashboard
+                                        handleNetworkError={handleNetworkError}
+                                    />
+                                }
+                            />
+                        </AuthenticatedTemplate>
                     }
                 />
 
                 <Route
                     path="/admin/upload-bench"
                     element={
-                        <ProtectedRoute
-                            element={
-                                <UploadBenchData
-                                    handleNetworkError={handleNetworkError}
-                                />
-                            }
-                        />
+                        <AuthenticatedTemplate>
+                            <ProtectedRoute
+                                element={
+                                    <UploadBenchData
+                                        handleNetworkError={handleNetworkError}
+                                    />
+                                }
+                            />
+                        </AuthenticatedTemplate>
                     }
                 />
                 <Route
                     path="/admin/bench-lists"
                     element={
-                        <ProtectedRoute
-                            element={
-                                <BenchDataLists
-                                    handleNetworkError={handleNetworkError}
-                                />
-                            }
-                        />
+                        <AuthenticatedTemplate>
+                            <ProtectedRoute
+                                element={
+                                    <BenchDataLists
+                                        handleNetworkError={handleNetworkError}
+                                    />
+                                }
+                            />
+                        </AuthenticatedTemplate>
                     }
                 />
             </Routes>
